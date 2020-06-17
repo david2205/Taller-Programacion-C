@@ -1,52 +1,90 @@
-# Prerequisites
-*.d
+#include <stdio.h>
+int resultPrueba(){
+     printf( "Calcular Resultado de pruebas\nENTER Para Continuar\n" );
+    getchar();
+}
 
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
+int serieFibonacci(){
+     printf( "Calcular Termino de la Serie de Fibonacci\nENTER Para Continuar\n" );
+    getchar();
+}
 
-# Linker output
-*.ilk
-*.map
-*.exp
+void sumDigitos(){
+    printf( "Hacer suma de digitos\nENTER Para Continuar\n" );
+    getchar();
+}
 
-# Precompiled Headers
-*.gch
-*.pch
+void CalcIMC(){
+    printf( "Calcular Indice de masa corporal\nENTER Para Continuar\n" );
+    getchar();
+}
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
+int numMagico(){
+     printf( "Calcular Numeros Magicos\nENTER Para Continuar\n" );
+    getchar();
+}
 
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
+void numEgolatra(){
+    printf( "Calcular Numeros Egolatras\nENTER Para Continuar\n" );
+    getchar();
+}
 
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
+void NumPrimos(){
+    printf( "Lista Numeros Primos\nENTER Para Continuar\n" );
+    getchar();
+}
 
-# Debug files
-*.dSYM/
-*.su
-*.idb
-*.pdb
+void mainMenu(){
+    char option;
 
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
+    char *mainMenu = "*****MENU PRINCIPAL*****\n\n"
+    "1. Numeros primos\n"
+    "2. Numero Egolatra\n"
+    "3. Numero Magico\n"
+    "4. Indice Masa Corporal\n"
+    "5. Suma de digitos\n"
+    "6. Secuencia de palabras Fibonacci\n"
+    "7. Resultado de prueba\n"
+    "Digite Opcion ([s/S]-Salir).... ";
+    do{
+        printf( mainMenu );
+        scanf("%c",&option);
+        fflush(stdin);
+        switch(option){
+            case '1' : NumPrimos();
+            break;
+
+            case '2' : numEgolatra();
+            break;
+            
+            case '3' : numMagico();
+            break;
+
+            case '4' : CalcIMC();
+            break;
+            
+            case '5' : sumDigitos();
+            break;
+
+            case '6' : serieFibonacci();
+            break;
+            
+            
+            case '7' : resultPrueba();
+            break;
+        }
+
+
+
+    }while( toupper(option) != 'S' );
+}
+
+/*
+ *
+ */
+int main(int argc, char** argv) {
+
+    mainMenu();
+
+    return 0;
+}
