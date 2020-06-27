@@ -16,6 +16,16 @@
 #include <ctype.h>
 
 
+void calSecuensiaFib(){
+    printf("En construccion");
+}
+
+
+void calResultadoPrueba(){
+    printf("En construccion");
+}
+
+
 void mainMenu(){
     char option;
     
@@ -28,11 +38,11 @@ void mainMenu(){
         scanf("%c",&option);
         fflush(stdin);
         switch(option){
-            case '6' : 
+            case '6' : calSecuensiaFib();
             getchar();
             break;
             
-            case '7' : 
+            case '7' : calResultadoPrueba();
             getchar();
             break;
             
@@ -50,4 +60,3 @@ int main() {
     
     return (EXIT_SUCCESS);
 }
-
