@@ -17,12 +17,14 @@
 
 
 void calSecuensiaFib(){
-    printf("En construccion");
+    printf("En construccion\nEnter para continuar");
+    getchar();
 }
 
 
 void calResultadoPrueba(){
-    printf("En construccion");
+    printf("En construccion\nEnter para continuar");
+    getchar();
 }
 
 
