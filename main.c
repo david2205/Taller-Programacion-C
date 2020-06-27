@@ -13,15 +13,40 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
 
-/*
- * 
- */
-int main(int argc, char** argv) {
 
-    int aux = 15;
+void mainMenu(){
+    char option;
     
-    printf("Hola %d",aux);
+    char *mainMenu = "<<<<<MENU PRINCIPAL>>>>>\n\n"
+    "6. Secuencia de palabras Fibonacci\n"
+    "7. Resultado de prueba\n"
+    "\nDigite una opcion ([s/S]-Salir)\n";
+    do{
+        printf(mainMenu);
+        scanf("%c",&option);
+        fflush(stdin);
+        switch(option){
+            case '6' : 
+            getchar();
+            break;
+            
+            case '7' : 
+            getchar();
+            break;
+            
+            
+            
+            
+        }
+    }while( toupper(option) != 'S' );
+}
+
+
+int main() {
+
+    mainMenu();
     
     return (EXIT_SUCCESS);
 }
