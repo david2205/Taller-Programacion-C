@@ -14,16 +14,59 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <string.h>
 
+char* calculateSerie(int n){
+    if (n==0){
+        return "0";
+    }else if(n==1){
+        return "1";
+    }else{
+        return "10";
+    }
+}
 
 void calSecuensiaFib(){
-    printf("En construccion\nEnter para continuar");
+    printf("En construccion--->%s\nEnter para continuar",calculateSerie(1));
     getchar();
 }
 
+int calculateResultado(char* res){
+    int cont = 0,resTot = 0;
+    for (int i=0 ; i<strlen(res) ; i++){
+        if (res[i]=='O'){
+            cont++;
+            resTot += cont;
+        }else{
+            cont = 0;
+        }
+    }
+    return resTot;
+}
+
+int validarCadena (char* cad){
+    for (int i=0 ; i<strlen(cad) ; i++){
+        if (cad[i]=='O' || cad[i]=='X'){
+            return 0;
+        }else{
+            return 1;
+        }
+    }
+}
 
 void calResultadoPrueba(){
-    printf("En construccion\nEnter para continuar");
+    char resultado[50];
+    printf("Digite la cadena de caracteres resultado de la prueba. Ejp: XXXOOXO; donde las O represantan una respuesta correcta y las X una incorrecta:  ");
+    scanf("%s", resultado);
+    for (int i=0 ; i<strlen(resultado) ; i++){
+        resultado[i] = toupper(resultado[i]);
+    }
+    if (validarCadena(resultado)==0){
+        printf("La cadena ingresada es [%s] y el resultado fue %d",resultado,calculateResultado(resultado));
+    }else{
+        printf("La cadena ingresada es incorrecta");
+    }
+    printf("\nEnter para continuar");
     getchar();
 }
 
@@ -40,6 +83,7 @@ void mainMenu(){
         scanf("%c",&option);
         fflush(stdin);
         switch(option){
+            
             case '6' : calSecuensiaFib();
             getchar();
             break;
@@ -48,8 +92,10 @@ void mainMenu(){
             getchar();
             break;
             
-            
-            
+            default:
+            printf("OPCION NO VALIDA\n");
+            getchar();
+                break;
             
         }
     }while( toupper(option) != 'S' );
