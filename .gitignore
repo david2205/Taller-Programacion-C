@@ -1,30 +1,102 @@
+/* Programa: Menú de opciones (Solución 2) */
+
 #include <math.h>
 #include <stdio.h>
 
     void NumPrimos(){
-
+     int i,j,cont,n;
+     printf( "\n   Introduzca un numero entero: ");
+     scanf( "%d", &n );
+        for(i=n;i>=2;i--){
+            cont=1;
+            for(j=2;j<i;j++)
+                if(i%j==0)
+                    cont=0;
+                if(cont)
+                    printf("%d-",i);
+     }
     }
     
     void numEgolatra(){
-        
+        int n,tam,tot=0,resultado=0;
+        printf( "\n Introduzca el TAMAÑO del entero: ");
+        scanf( "%d", &tam );
+        int num[tam];
+        for(int i=0;i<tam;i++){
+            printf( "\n   Introduzca el DIGITO del numero en la posicion %d ------->",i+1);
+            scanf( "%d", &num[i] );
+            }
+        for(int i=0;i<tam;i++){
+            tot+=pow(num[i],tam);
+             }
+        unsigned char i;
+        for(i=0;i<tam;i++){
+            resultado=resultado*10+num[i];
+            }
+            if(resultado==tot){
+                printf("\n ******Si es un numero Egolatra***** \n");
+            }else{
+                printf("\n *********Lo siento No es un numero Egolatra******** \n");
+            }
     }
     
     void numMagico(){
-        
+        int n,tam,mayor=0,menor=0,original=0;
+        unsigned char i;
+        printf( "\n Introduzca el TAMAÑO del entero: ");
+        scanf( "%d", &tam );
+        int num[tam];
+            for(int i=0;i<tam;i++){
+                printf( "\n   Introduzca el DIGITO del numero en la posicion %d ------->",i+1);
+                scanf( "%d", &num[i] );
+            }
+            for(i=0;i<tam;i++){
+                original=original*10+num[i];
+            }
+       int aux=0;
+        for(int j=0;j<tam;j++){
+            for(int i=0;i<tam-1;i++){
+                if(num[i]>num[i+1]){
+                    aux=num[i];
+                    num[i]=num[i+1];
+                    num[i+1]=aux;
+                }
+            }
+        }
+            for(i=0;i<tam;i++){
+                menor=menor*10+num[i];
+            }
+       int temp,cont;
+       cont=0;
+        while(cont<tam/2){
+            temp=num[cont];
+            num[cont]=num[tam-1-cont];
+            num[tam-1-cont]=temp;
+            cont++;
+                  }
+            for(i=0;i<tam;i++){
+                mayor=mayor*10+num[i];
+            }
+        if((mayor-menor)==original){
+            printf("\n *******SI ES UN NUMERO MAGICO********* \n");
+          }else{
+            printf("\n *******NO ES UN NUMERO MAGICO********* \n");
+          }
     }
 
 
 int main(){
     int n, opcion;
-    do
-    {
-        printf( "\n   1. Calcular Numero Primo");
+    do{
+        fflush(stdin);
+        printf( "\n   ************MENU PRINCIPAL**********");
+        printf( "\n   1. Calcular numeros primos");
         printf( "\n   2. Calcular Numero Egolatra");
         printf( "\n   3. Calcular Numero Magico");
         printf( "\n   4. Salir." );
         do
         {
-            printf( "\n   Introduzca opci%cn (1-4): ");
+            printf( "\n   Introduzca opci%cn (1-4): ", 162 );
             scanf( "%d", &opcion );
 
         } while ( opcion < 1 || opcion > 4 );
@@ -41,7 +113,7 @@ int main(){
                     break;
          }
 
-    } while ( opcion != 4 );
+    } while ( toupper(opcion) != 4 );
 
     return 0;
 }
