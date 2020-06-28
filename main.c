@@ -45,13 +45,16 @@ int calculateResultado(char* res){
 }
 
 int validarCadena (char* cad){
+    int bool = 0;
     for (int i=0 ; i<strlen(cad) ; i++){
         if (cad[i]=='O' || cad[i]=='X'){
-            return 0;
+            bool = 0;
         }else{
-            return 1;
+            bool = 1;
+            return bool;
         }
     }
+    return bool;
 }
 
 void calResultadoPrueba(){
