@@ -29,7 +29,7 @@ char* calculateSerie(int n,char *chain){
     return chain;
 }
 
-void calSecuensiaFib(){
+void calSecuenciaFib(){
     long n;
     int cont1=0,cont2=0,cont3=0,lenSer=0,lenPat=0;
     char chain[80]="",chain2[80]="",chain4[80]="",numberSerie[80]="", *aux, pattern[80]="",var4[80]="";
@@ -38,7 +38,7 @@ void calSecuensiaFib(){
     if (fgets(numberSerie, sizeof(numberSerie), stdin)){
         n = strtol(numberSerie, &aux, 10);
         if (aux == numberSerie || *aux != '\n'){
-            printf("\nLas cadenas no son validas debe digitar un numero entero positivo");
+            printf("\nLas cadenas y los decimales no son validos, debe digitar un numero entero positivo");
         }else{
             if ( n >= 0 ){
                 printf("\nDigite el patron de bits (0,1) a buscar: ");
@@ -62,7 +62,7 @@ void calSecuensiaFib(){
                         }
                         printf("\nEl patrón de bits %s se encuentra %d veces en f(%ld) = %s", pattern,cont3,n,calculateSerie(n,chain2));
                     }else{
-                        printf("El patron de bits %s es demasiado largo para la serie f(n) con n= %ld",pattern, n);
+                        printf("El patron de bits %s es demasiado largo para la serie f(n) con n = %ld",pattern, n);
                     }
                 }else{
                     printf(cont2 != 0 ? "\nEl patrón de bits %s se encuentra 0 veces en f(n) para n = %ld" : "\nEl patron digitado no corresponde a un patron de bits (0,1)", pattern, n);
@@ -133,7 +133,7 @@ void mainMenu(){
         fflush(stdin);
         switch(option){
             
-            case 6 : calSecuensiaFib();
+            case 6 : calSecuenciaFib();
             getchar();
             break;
             
