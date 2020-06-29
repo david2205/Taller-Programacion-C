@@ -1,20 +1,112 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/* 
- * File:   main.c
- * Author: Propietario
- *
- * Created on 26 de junio de 2020, 06:19 PM
- */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
+
+    void NumPrimos(){
+     int i,j,cont,n;
+     printf( "\n   Introduzca un numero entero: ");
+     if(scanf( "%d", &n )==1){
+        for(i=n;i>=2;i--){
+            cont=1;
+            for(j=2;j<i;j++)
+                if(i%j==0)
+                    cont=0;
+                if(cont)
+                    printf("%d-",i);          
+     }
+     printf("\nEnter para continuar");
+     getchar();
+     }else{
+         printf( "\n ERROR!!! introduzca un entero \n");
+         getchar();
+     }
+    }
+    
+    void numEgolatra(){
+        int n,tam,tot=0,resultado=0;
+        printf( "\n Introduzca el TAMAÑO del entero: ");
+        if(scanf( "%d", &tam )==1){
+        int num[tam];
+        for(int i=0;i<tam;i++){
+            printf( "\n   Introduzca el DIGITO del numero en la posicion %d ------->",i+1);
+            if(scanf( "%d", &num[i]) !=1 ){
+                printf( "\n ERROR!!!!.....SOLO VALORES ENTEROS!!!! \n\n");
+                break;
+            }
+        }
+        for(int i=0;i<tam;i++){
+            tot+=pow(num[i],tam);
+             }
+        unsigned char i;
+        for(i=0;i<tam;i++){
+            resultado=resultado*10+num[i];
+            }
+            if(resultado==tot){
+                printf("\n ******Si es un numero Egolatra***** \n");
+            }else{
+                printf("\n *********Lo siento No es un numero Egolatra******** \n");
+            }
+        printf("\nEnter para continuar");
+        getchar();
+        }else{
+             printf( "\n ERROR!!!!.....Introduzca un valor entero");
+             getchar();
+        }
+    }
+    
+    void numMagico(){
+        int n,tam,mayor=0,menor=0,original=0;
+        unsigned char i;
+        printf( "\n Introduzca el TAMAÑO del entero: ");
+        if(scanf( "%d", &tam )==1){
+        int num[tam];
+            for(int i=0;i<tam;i++){
+                printf( "\n   Introduzca el DIGITO del numero en la posicion %d ------->",i+1);
+               if(scanf( "%d", &num[i]) !=1 ){
+                printf( "\n ERROR!!!!.....SOLO VALORES ENTEROS!!!! \n\n");
+                break;
+            }
+            }
+            for(i=0;i<tam;i++){
+                original=original*10+num[i];
+            }
+       int aux=0;
+        for(int j=0;j<tam;j++){
+            for(int i=0;i<tam-1;i++){
+                if(num[i]>num[i+1]){
+                    aux=num[i];
+                    num[i]=num[i+1];
+                    num[i+1]=aux;
+                }
+            }
+        }
+            for(i=0;i<tam;i++){
+                menor=menor*10+num[i];
+            }
+       int temp,cont;
+       cont=0;
+        while(cont<tam/2){
+            temp=num[cont];
+            num[cont]=num[tam-1-cont];
+            num[tam-1-cont]=temp;
+            cont++;
+                  }
+            for(i=0;i<tam;i++){
+                mayor=mayor*10+num[i];
+            }
+        if((mayor-menor)==original){
+            printf("\n *******SI ES UN NUMERO MAGICO********* \n");
+          }else{
+            printf("\n *******NO ES UN NUMERO MAGICO********* \n");
+          }
+       printf("\nEnter para continuar");
+       getchar();
+        }else{
+             printf( "\n ERROR!!!!.....Introduzca un valor entero");
+            getchar();
+        }
+    }
 
 char* calculateSerie(int n,char *chain){
     if ( n==0 || n==1 ){
@@ -123,6 +215,9 @@ void mainMenu(){
     int option;
     
     char *mainMenu = "<<<<<MENU PRINCIPAL>>>>>\n\n"
+    "1. Calcular numeros primos\n"
+    "2. Calcular Numero Egolatra\n"
+    "3. Calcular Numero Magico\n"
     "6. Secuencia de palabras Fibonacci\n"
     "7. Resultado de prueba\n"
     "8. Salir\n"
@@ -132,6 +227,17 @@ void mainMenu(){
         scanf("%d",&option);
         fflush(stdin);
         switch(option){
+            case 1: NumPrimos();
+            getchar();
+            break;
+
+            case 2: numEgolatra();
+            getchar();
+            break;
+
+            case 3: numMagico();
+            getchar();
+            break;
             
             case 6 : calSecuenciaFib();
             getchar();
@@ -144,7 +250,7 @@ void mainMenu(){
             default:
             printf(option == 8 ? "EL PROGRAMA FINALIZO\n" : "OPCION NO VALIDA\n\n");
             getchar();
-                break;
+            break;
             
         }
     }while( option != 8 );
