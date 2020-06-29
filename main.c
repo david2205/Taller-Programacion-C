@@ -16,18 +16,22 @@
 #include <ctype.h>
 #include <string.h>
 
-char* calculateSerie(int n){
-    if (n==0){
-        return "0";
-    }else if(n==1){
-        return "1";
+char* calculateSerie(int n,char *chain){
+    if ( n==0 || n==1 ){
+        if ( n==1 ){
+            strcat(chain, "1");
+        }else{
+            strcat(chain, "0");
+        }
     }else{
-        return "10";
+        *calculateSerie( n-1, chain ) + *calculateSerie( n-2, chain);
     }
+    return chain;
 }
 
 void calSecuensiaFib(){
-    printf("En construccion--->%s\nEnter para continuar",calculateSerie(1));
+    char chain[100];
+    printf("En construccion--->%s\nEnter para continuar",calculateSerie(4,chain));
     getchar();
 }
 
