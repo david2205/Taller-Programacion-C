@@ -30,8 +30,49 @@ char* calculateSerie(int n,char *chain){
 }
 
 void calSecuensiaFib(){
-    char chain[100];
-    printf("En construccion--->%s\nEnter para continuar",calculateSerie(4,chain));
+    long n;
+    int cont1=0,cont2=0,cont3=0,lenSer=0,lenPat=0;
+    char chain[80]="",chain2[80]="",chain4[80]="",numberSerie[80]="", *aux, pattern[80]="",var4[80]="";
+    printf("Digite el numero n para la serie :");
+    getchar();
+    if (fgets(numberSerie, sizeof(numberSerie), stdin)){
+        n = strtol(numberSerie, &aux, 10);
+        if (aux == numberSerie || *aux != '\n'){
+            printf("\nLas cadenas no son validas debe digitar un numero entero positivo");
+        }else{
+            if ( n >= 0 ){
+                printf("\nDigite el patron de bits (0,1) a buscar: ");
+                scanf("%s", pattern);
+                
+                char var1[80]="",var2[80]="",var3[80]="";
+
+                for (int i = 0; i < strlen(pattern); i++) {
+                    cont1 += strcmp(strncpy(var1, &pattern[i], 1), "0") == 0 || strcmp(strncpy(var1, &pattern[i], 1), "1") == 0 ? 1 : 0;
+                    cont2 += (i + 2 <= strlen(pattern) && strcmp(strncpy(var2, &pattern[i], 2), "00") == 0) || (i + 3 <= strlen(pattern) && strcmp(strncpy(var3, &pattern[i], 3), "111") == 0) ? 1 : 0;
+                }
+                if ( cont1 == strlen(pattern) && cont2 == 0){
+                    lenSer = strlen(calculateSerie(n,chain));
+                    lenPat = strlen(pattern);
+                    if ( lenSer >= lenPat ){
+                        char *chain3 = calculateSerie(n,chain4);
+                        for (int i=0 ; i<lenSer ; i++){
+                            if (strcmp(strncpy(var4,&chain3[i * lenPat],lenPat),pattern)==0){
+                                cont3++;
+                            }
+                        }
+                        printf("\nEl patrón de bits %s se encuentra %d veces en f(%ld) = %s", pattern,cont3,n,calculateSerie(n,chain2));
+                    }else{
+                        printf("El patron de bits %s es demasiado largo para la serie f(n) con n= %ld",pattern, n);
+                    }
+                }else{
+                    printf(cont2 != 0 ? "\nEl patrón de bits %s se encuentra 0 veces en f(n) para n = %ld" : "\nEl patron digitado no corresponde a un patron de bits (0,1)", pattern, n);
+                }
+            }else {
+                printf("\nEl numero n debe ser positivo\n");
+            }      
+        }
+    }
+    printf("\nEnter para continuar");
     getchar();
 }
 
@@ -79,33 +120,34 @@ void calResultadoPrueba(){
 
 
 void mainMenu(){
-    char option;
+    int option;
     
     char *mainMenu = "<<<<<MENU PRINCIPAL>>>>>\n\n"
     "6. Secuencia de palabras Fibonacci\n"
     "7. Resultado de prueba\n"
-    "\nDigite una opcion ([s/S]-Salir)\n";
+    "8. Salir\n"
+    "\nDigite una opcion\n";
     do{
         printf(mainMenu);
-        scanf("%c",&option);
+        scanf("%d",&option);
         fflush(stdin);
         switch(option){
             
-            case '6' : calSecuensiaFib();
+            case 6 : calSecuensiaFib();
             getchar();
             break;
             
-            case '7' : calResultadoPrueba();
+            case 7 : calResultadoPrueba();
             getchar();
             break;
             
             default:
-            printf("OPCION NO VALIDA\n");
+            printf(option == 8 ? "EL PROGRAMA FINALIZO\n" : "OPCION NO VALIDA\n\n");
             getchar();
                 break;
             
         }
-    }while( toupper(option) != 'S' );
+    }while( option != 8 );
 }
 
 
