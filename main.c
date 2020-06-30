@@ -108,6 +108,91 @@
         }
     }
 
+void imc(){
+    
+    float height, weight,gender, imc, m;
+    
+    printf("Digite su estatura en centimetros : ");
+    scanf("%f",&height);
+    
+    printf("Digite su peso en kg: ");
+    scanf("%f",&weight);
+    
+    printf("Digite su genero 1 si es masculino , 2 si es femenino: ");
+    scanf("%f",&gender);
+    
+    m=height/100;
+            
+    imc=weight/(m*m);
+    
+    printf("\nSu IMC es: %.1f",imc);
+    
+    if (gender==1) {
+        if(imc<17){
+            printf("\nSu estado es: Desnutricion\n");}
+        else{
+            if(imc>17&&imc<20){
+                printf("\nSu estado es: Bajo peso\n");}
+            else{
+                if(imc>20&&imc<25){
+                    printf("\nSu estado es: Nomal\n");}
+                else{
+                    if(imc>25&&imc<30){
+                        printf("\nSu estado es: Sobre peso\n");}
+                    else{
+                        if(imc>30&&imc<35){
+                            printf("\nSu estado es: Obesidad\n");}
+                        else{
+                            if(imc>35&&imc<40){
+                                printf("\nSu estado es: Obesidad marcada\n");}
+                            else{
+                                 if(imc>40){
+                                  printf("\nSu estado es: Obesidad Morbida\n");
+                            }
+                        }
+                    }
+                }
+            }
+            
+        }
+        }
+    } else {
+        if(imc<16){
+            printf("\nSu estado es: Desnutricion\n");}
+        else{
+            if(imc>16&&imc<20){
+                printf("\nSu estado es: Bajo peso\n");}
+            else{
+                if(imc>20&&imc<24){
+                    printf("\nSu estado es: Normal\n");}
+                else{
+                    if(imc>24&&imc<29){
+                        printf("\nSu estado es: Sobre peso\n");}
+                    else{
+                        if(imc>29&&imc<34){
+                            printf("\nSu estado es: Obesidad\n");}
+                        else{
+                            if(imc>34&&imc<39){
+                                printf("\nSu estado es: Obesidad marcada\n");}
+                            else{
+                                if (imc>39) {
+                                    printf("\nSu estado es: Obesidad Morbida\n");
+                                }
+
+                                }
+
+                            }
+                        }
+                    }
+                }
+            }
+            
+    }
+    
+    printf("\nEnter para continuar");
+    getchar();
+}
+
 char* calculateSerie(int n,char *chain){
     if ( n==0 || n==1 ){
         if ( n==1 ){
@@ -239,6 +324,10 @@ void mainMenu(){
             getchar();
             break;
             
+            case 4: imc();
+            getchar();
+            break;
+                
             case 6 : calSecuenciaFib();
             getchar();
             break;
