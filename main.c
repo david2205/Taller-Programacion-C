@@ -108,90 +108,130 @@
         }
     }
 
-void imc(){
-    
-    float height, weight,gender, imc, m;
-    
-    printf("Digite su estatura en centimetros : ");
-    scanf("%f",&height);
-    
-    printf("Digite su peso en kg: ");
-    scanf("%f",&weight);
-    
+void imc() {
+
+    float height, weight, gender, imc, m;
+
     printf("Digite su genero 1 si es masculino , 2 si es femenino: ");
-    scanf("%f",&gender);
-    
-    m=height/100;
-            
-    imc=weight/(m*m);
-    
-    printf("\nSu IMC es: %.1f",imc);
-    
-    if (gender==1) {
-        if(imc<17){
-            printf("\nSu estado es: Desnutricion\n");}
-        else{
-            if(imc>17&&imc<20){
-                printf("\nSu estado es: Bajo peso\n");}
-            else{
-                if(imc>20&&imc<25){
-                    printf("\nSu estado es: Nomal\n");}
-                else{
-                    if(imc>25&&imc<30){
-                        printf("\nSu estado es: Sobre peso\n");}
-                    else{
-                        if(imc>30&&imc<35){
-                            printf("\nSu estado es: Obesidad\n");}
-                        else{
-                            if(imc>35&&imc<40){
-                                printf("\nSu estado es: Obesidad marcada\n");}
-                            else{
-                                 if(imc>40){
-                                  printf("\nSu estado es: Obesidad Morbida\n");
+    scanf("%f", &gender);
+
+    if (gender == 1 || gender == 2) {
+        
+    printf("Digite su estatura en centimetros : ");
+    scanf("%f", &height);
+
+    printf("Digite su peso en kg: ");
+    scanf("%f", &weight);
+
+
+    m = height / 100;
+
+    imc = weight / (m * m);
+
+    printf("\nSu IMC es: %.1f", imc);
+
+    if (gender == 1) {
+        if (imc < 17) {
+            printf("\nSu estado es: Desnutricion\n");
+        } else {
+            if (imc > 17 && imc < 20) {
+                printf("\nSu estado es: Bajo peso\n");
+            } else {
+                if (imc > 20 && imc < 25) {
+                    printf("\nSu estado es: Nomal\n");
+                } else {
+                    if (imc > 25 && imc < 30) {
+                        printf("\nSu estado es: Sobre peso\n");
+                    } else {
+                        if (imc > 30 && imc < 35) {
+                            printf("\nSu estado es: Obesidad\n");
+                        } else {
+                            if (imc > 35 && imc < 40) {
+                                printf("\nSu estado es: Obesidad marcada\n");
+                            } else {
+                                if (imc > 40) {
+                                    printf("\nSu estado es: Obesidad Morbida\n");
+                                }
                             }
                         }
                     }
                 }
+
             }
-            
-        }
         }
     } else {
-        if(imc<16){
-            printf("\nSu estado es: Desnutricion\n");}
-        else{
-            if(imc>16&&imc<20){
-                printf("\nSu estado es: Bajo peso\n");}
-            else{
-                if(imc>20&&imc<24){
-                    printf("\nSu estado es: Normal\n");}
-                else{
-                    if(imc>24&&imc<29){
-                        printf("\nSu estado es: Sobre peso\n");}
-                    else{
-                        if(imc>29&&imc<34){
-                            printf("\nSu estado es: Obesidad\n");}
-                        else{
-                            if(imc>34&&imc<39){
-                                printf("\nSu estado es: Obesidad marcada\n");}
-                            else{
-                                if (imc>39) {
+        if (imc < 16) {
+            printf("\nSu estado es: Desnutricion\n");
+        } else {
+            if (imc > 16 && imc < 20) {
+                printf("\nSu estado es: Bajo peso\n");
+            } else {
+                if (imc > 20 && imc < 24) {
+                    printf("\nSu estado es: Normal\n");
+                } else {
+                    if (imc > 24 && imc < 29) {
+                        printf("\nSu estado es: Sobre peso\n");
+                    } else {
+                        if (imc > 29 && imc < 34) {
+                            printf("\nSu estado es: Obesidad\n");
+                        } else {
+                            if (imc > 34 && imc < 39) {
+                                printf("\nSu estado es: Obesidad marcada\n");
+                            } else {
+                                if (imc > 39) {
                                     printf("\nSu estado es: Obesidad Morbida\n");
                                 }
 
-                                }
-
                             }
+
                         }
                     }
                 }
             }
-            
+        }
+
     }
-    
+    }else{
+        printf("Error... Opcion invalida");
+    }
+
     printf("\nEnter para continuar");
     getchar();
 }
+
+void sumaDigitos() {
+    int less = 0, higher = 0, exclude = 0, sumExclude = 0, sumInclude = 0, dig = 0, num = 0, contExc = 0, suma = 0;
+
+    printf("Digite el valor menor del rango: ");
+    scanf("%d", &less);
+    getchar();
+    printf("Digite el valor mayor del rango: ");
+    scanf("%d", &higher);
+    getchar();
+    printf("Digite el valor que desea excluir del intervalo: ");
+    scanf("%d", &exclude);
+    getchar();
+
+    for (int i = less; i <= higher; i++) {
+        num = i;
+        while (num != 0) {
+            dig = num % 10;
+            num = num / 10;
+
+            if (dig == exclude) {
+                contExc++;
+            } else {
+                suma += dig;
+            }
+        }
+    }
+    sumExclude = contExc;
+    sumInclude = suma;
+    printf("Los excluidos fueron %d y la suma del resto es %d", sumExclude, sumInclude);
+    printf("\nEnter para continuar");
+    getchar();
+}
+
 
 char* calculateSerie(int n,char *chain){
     if ( n==0 || n==1 ){
@@ -300,14 +340,16 @@ void mainMenu(){
     int option;
     
     char *mainMenu = "<<<<<MENU PRINCIPAL>>>>>\n\n"
-    "1. Calcular numeros primos\n"
-    "2. Calcular Numero Egolatra\n"
-    "3. Calcular Numero Magico\n"
-    "4. IMC\n"
-    "6. Secuencia de bits Fibonacci\n"
-    "7. Resultado de prueba\n"
-    "8. Salir\n"
-    "\nDigite una opcion\n";
+            "1. Calcular numeros primos\n"
+            "2. Calcular Numero Egolatra\n"
+            "3. Calcular Numero Magico\n"
+            "4. Indice de masa corporal\n"
+            "5. Sumatoria de digitos\n"
+            "6. Secuencia de bits Fibonacci\n"
+            "7. Resultado de prueba\n"
+            "8. Salir\n"
+            "\nDigite una opcion\n";
+    
     do{
         printf(mainMenu);
         scanf("%d",&option);
@@ -329,7 +371,11 @@ void mainMenu(){
             case 4: imc();
             getchar();
             break;
-                
+            
+            case 5: sumaDigitos();
+            getchar();
+            break;
+            
             case 6 : calSecuenciaFib();
             getchar();
             break;
